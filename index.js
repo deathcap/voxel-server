@@ -5,7 +5,6 @@ var extend = require('extend')
 var path = require('path')
 var uuid = require('hat')
 // voxel dependencies
-var voxel = require('voxel')
 var crunch = require('voxel-crunch')
 
 module.exports = Server

@@ -10,7 +10,6 @@
     "voxel-crunch": "0.2.1",
     "duplex-emitter": "2.1.2",
     "hat": "0.0.3",
-    "voxel": "0.3.1",
     "extend": "1.2.1"
   },
   "engines": {
