@@ -7,7 +7,6 @@
     "url": "git@github.com:kumavis/voxel-server.git"
   },
   "dependencies": {
-    "voxel-engine": "0.20.0",
     "voxel-crunch": "0.2.1",
     "duplex-emitter": "2.1.2",
     "hat": "0.0.3",

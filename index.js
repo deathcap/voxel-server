@@ -7,7 +7,6 @@ var uuid = require('hat')
 // voxel dependencies
 var voxel = require('voxel')
 var crunch = require('voxel-crunch')
-var engine = require('voxel-engine')
 
 module.exports = Server
 
@@ -36,6 +35,8 @@ Server.prototype.initialize = function(opts) {
     forwardEvents: [],
   }
   var settings = self.settings = extend({}, defaults, opts)
+  var engine = opts.engine
+  if (!engine) throw new Error('voxel-server requires engine option set to voxel-engine module')
   
   // prepare a server object to return
   extend(self, new EventEmitter())
