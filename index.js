@@ -79,7 +79,8 @@ Server.prototype.connectClient = function(duplexStream) {
 
   // send client id and initial game settings
   connection.emit('id', id)
-  connection.emit('settings', settings)
+  //connection.emit('settings', settings)
+  connection.emit('settings', {}) // settings can contain unserializable objects (ArrayBuffer types, etc. so not sending for now. TODO: make all serializable
 
 }
 
