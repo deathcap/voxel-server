@@ -3,6 +3,7 @@ var EventEmitter = require('events').EventEmitter
 var DuplexEmitter = require('duplex-emitter')
 var extend = require('extend')
 var path = require('path')
+var uuid = require('hat')
 // voxel dependencies
 var crunch = require('voxel-crunch')
 
@@ -58,8 +59,8 @@ Server.prototype.connectClient = function(duplexStream, id) {
   var game = self.game
   // create 'connection' remote event emitter from duplex stream
   var connection = DuplexEmitter(duplexStream)
-  // save client id
-  if (id === undefined) throw new Error('voxel-server connectClient() requires id argument');
+  // register client id
+  id = id || uuid()
   connection.id = duplexStream.id = id
   self.broadcast(id, 'join', id)
   var client = self.clients[id] = {
