@@ -41,6 +41,8 @@ Server.prototype.initialize = function(opts) {
   extend(self, new EventEmitter())
   self.forwardEvents = settings.forwardEvents
   var game = self.game = engine(settings)
+  if (game.notCapable()) return;
+
   var clients = self.clients = {}
   var chunkCache = self.chunkCache = {}
 
