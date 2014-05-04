@@ -4,6 +4,8 @@ var DuplexEmitter = require('duplex-emitter')
 var extend = require('extend')
 var path = require('path')
 var uuid = require('hat')
+var glm = require('gl-matrix')
+var vec3 = glm.vec3
 // voxel dependencies
 var crunch = require('voxel-crunch')
 
@@ -69,8 +71,8 @@ Server.prototype.connectClient = function(duplexStream, id) {
     id: id,
     connection: connection,
     player: {
-      rotation: new game.THREE.Vector3(),
-      position: new game.THREE.Vector3(),
+      rotation: vec3.create(),
+      position: vec3.create(),
     },
   }
 
@@ -116,16 +118,16 @@ Server.prototype.bindClientEvents = function(client) {
 
   // client sends new position, rotation
   connection.on('state', self.handleErrors(function(state) {
-    client.player.rotation.x = state.rotation.x
-    client.player.rotation.y = state.rotation.y
+    client.player.rotation[0] = state.rotation[0]
+    client.player.rotation[1] = state.rotation[1] // copy x,y rotation TODO: why not z?
     var pos = client.player.position
-    var distance = pos.distanceTo(state.position)
+    var distance = vec3.distance(pos, state.position)
     if (distance > 20) {
       var before = pos.clone()
-      pos.lerp(state.position, 0.1)
+      vec3.lerp(state.position, pos, state.position, 0.1)
       return
     }
-    pos.copy(state.position)
+    vec3.copy(pos, state.position)
     self.emit('client.state',client,state)
   }))
 

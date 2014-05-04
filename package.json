@@ -10,7 +10,8 @@
     "voxel-crunch": "0.2.1",
     "duplex-emitter": "2.1.2",
     "hat": "0.0.3",
-    "extend": "1.2.1"
+    "extend": "1.2.1",
+    "gl-matrix": "^2.2.1"
   },
   "engines": {
     "node": "0.10.20"
